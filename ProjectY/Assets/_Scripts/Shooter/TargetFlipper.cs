@@ -13,6 +13,8 @@ namespace Shooter
         [Header("Score")]
         [SerializeField] private TargetScore _targetScore;
         [SerializeField] private float _shotRotationMultiplier = 5;
+        [SerializeField] private TargetType _badOrGood = TargetType.Bad;
+        public TargetType Type => _badOrGood;
 
         //Bad hardCoded but yeah
         private readonly Quaternion _laying = Quaternion.Euler(90, 0, 0);
@@ -20,15 +22,9 @@ namespace Shooter
 
         private readonly WaitForEndOfFrame _wait = new();
 
-        private void OnEnable()
-        {
-            _targetScore.Shot += ReturnToPool;
-        }
+        private void OnEnable() => _targetScore.Shot += ReturnToPool;
 
-        private void OnDisable()
-        {
-            _targetScore.Shot -= ReturnToPool;
-        }
+        private void OnDisable() => _targetScore.Shot -= ReturnToPool;
 
         public void Flip()
         {
@@ -56,6 +52,19 @@ namespace Shooter
         {
             FlipBack(_shotRotationMultiplier);
             _event.Raise(this);
+        }
+
+        public void SetType(TargetType type)
+        {
+            _badOrGood = type;
+            if (type == TargetType.Good)
+            {
+                _targetScore.SetScore(-_targetScore.Score);
+            }
+            else
+            {
+                _targetScore.SetScore(Mathf.Abs(_targetScore.Score));
+            }
         }
     }
 }

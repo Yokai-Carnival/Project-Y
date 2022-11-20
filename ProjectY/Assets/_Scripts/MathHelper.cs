@@ -18,7 +18,7 @@ public static class MathHelper
     /// <summary>
     /// Map a value from a range to another
     /// </summary>
-    public static float Map(float value, float min1, float max1, float min2, float max2, bool clamp = true)
+    public static float Map(float value, float min1, float max1, float min2, float max2, bool clamp = false)
     {
         float val = min1 + (max1 - min1) * ((value - min2) / (max2 - min2));
 

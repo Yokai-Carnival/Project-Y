@@ -1,24 +1,26 @@
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using ProjectY;
-using UnityEngine.UI;
+using ScriptableObjectEvents;
 
 namespace Shooter
 {
     public class ShooterManager : MonoBehaviour
     {
         [Header("Targets")]
-        [SerializeField] private List<TargetFlipper> _targetFlippersPool = new();
-        private List<TargetFlipper> _currentTargetFlipped = new();
+        [ContextMenuItem("Get all targets in scene", nameof(GetAllTargetsInScene))]
+        [SerializeField] private List<TargetFlipper> _targetPool = new();
+        private readonly List<TargetFlipper> _currentBadTargetsFlipped = new();
+        private readonly List<TargetFlipper> _currentGoodTargetsFlipped = new();
         [SerializeField] private Vector2Int _batchRange = new(1,6);
-
 
         [Header("Timers")]
         [SerializeField] private Timer _endGameTimer;
         [SerializeField] private FloatVariable _currentTime;
         [SerializeField] private Timer _flipTargets;
         [SerializeField] private Timer _flipTargetsBack;
+        [SerializeField] private VoidEvent _gameEnded;
 
         private void OnEnable()
         {
@@ -36,8 +38,15 @@ namespace Shooter
 
         private void Update()
         {
+            UpdateTimeLeft();
+        }
+
+        private void UpdateTimeLeft()
+        {
+            if(!_endGameTimer.CanTick)
+                return;
             float startTime = _endGameTimer.Time;
-            _currentTime.Value = MathHelper.Map(_endGameTimer.ElapsedTime, 0, startTime, startTime, 0);
+            _currentTime.SetValue(MathHelper.Map(_endGameTimer.ElapsedTime, 0, startTime, startTime, 0));
         }
 
         public void EndGame()
@@ -45,7 +54,10 @@ namespace Shooter
             DisableTimers(_flipTargets);
             DisableTimers(_flipTargetsBack);
             DisableTimers(_endGameTimer);
-            _currentTime.Value = 0;
+            _currentTime.SetValue(0);
+            _gameEnded.Raise();
+            FlipTargetsBack();
+            gameObject.SetActive(false);
         }
 
         private void DisableTimers(Timer timer)
@@ -54,23 +66,36 @@ namespace Shooter
             timer.enabled = false;
         }
 
+        private void GetAllTargetsInScene() => _targetPool = FindObjectsOfType<TargetFlipper>().ToList();
+
         [ContextMenu("Flip")]
         public void FlipTargets()
         {
             _flipTargets.StopAndReset();
             _flipTargetsBack.Continue();
 
-            int poolSize = _targetFlippersPool.Count;
+            int poolSize = _targetPool.Count;
             int amountToFlip = Random.Range(_batchRange.x, _batchRange.y);
 
             for (int i = 0; i < amountToFlip; i++)
             {
                 int index = Random.Range(0, poolSize);
-                TargetFlipper iFlipper = _targetFlippersPool[index];
+
+                TargetFlipper iFlipper = _targetPool[index];
                 RemoveFromPool(iFlipper);
+
                 iFlipper.Flip();
                 poolSize--;
             }
+        }
+
+        private void RemoveFromPool(TargetFlipper iFlipper)
+        {
+            _targetPool.Remove(iFlipper);
+            if (iFlipper.Type == TargetType.Bad)
+                _currentBadTargetsFlipped.Add(iFlipper);
+            else
+                _currentGoodTargetsFlipped.Add(iFlipper);
         }
 
         [ContextMenu("FlipBack")]
@@ -78,38 +103,59 @@ namespace Shooter
         {
             _flipTargets.Continue();
             _flipTargetsBack.StopAndReset();
-            for (int i = _currentTargetFlipped.Count - 1; i >= 0; i--)
+
+            if (_currentBadTargetsFlipped.Count > 0)
+                FlipTargetBackLoop(_currentBadTargetsFlipped);
+            if (_currentGoodTargetsFlipped.Count > 0)
+                FlipTargetBackLoop(_currentGoodTargetsFlipped);
+        }
+
+        private void FlipTargetBackLoop(List<TargetFlipper> targetFlippers)
+        {
+            for (int i = targetFlippers.Count - 1; i >= 0; i--)
             {
-                TargetFlipper iFlipper = _currentTargetFlipped[i];
-                AddBackToPool(iFlipper);
+                TargetFlipper iFlipper = targetFlippers[i];
+                AddBackToPool(targetFlippers, iFlipper);
                 iFlipper.FlipBack();
             }
         }
 
-        private void RemoveFromPool(TargetFlipper iFlipper)
+        private void AddBackToPool(List<TargetFlipper> targetFlippers,TargetFlipper iFlipper)
         {
-            _currentTargetFlipped.Add(iFlipper);
-            _targetFlippersPool.Remove(iFlipper);
+            _targetPool.Add(iFlipper);
+            targetFlippers.Remove(iFlipper);
         }
 
         private void AddBackToPool(TargetFlipper iFlipper)
         {
-            _targetFlippersPool.Add(iFlipper);
-            _currentTargetFlipped.Remove(iFlipper);
+            _targetPool.Add(iFlipper);
+            if (iFlipper.Type == TargetType.Bad)
+                _currentBadTargetsFlipped.Remove(iFlipper);
+            else
+                _currentGoodTargetsFlipped.Remove(iFlipper);
         }
 
         //Event Listener
         public void AddBackToPoolPublic(TargetFlipper flipper)
         {
             AddBackToPool(flipper);
-            if(_currentTargetFlipped.Count == 0)
+            if(_currentBadTargetsFlipped.Count == 0)
             {
                 _flipTargets.Continue();
                 _flipTargetsBack.StopAndReset();
 
+                if (_currentGoodTargetsFlipped.Count > 0)
+                    FlipTargetBackLoop(_currentGoodTargetsFlipped);
+
                 // Can Add A special score here 
                 // Like if the player shot all targets before the timer to flip back
             }
+        }
+
+        //Event listener 
+        public void AddSecondToTimer(float timeToAdd)
+        {
+            _endGameTimer.ChangeTime(timeToAdd);
         }
     }
 }

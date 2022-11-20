@@ -7,6 +7,10 @@ public class BaseScore : MonoBehaviour
     [SerializeField] protected FloatEvent _scored;
     [SerializeField] protected float _baseScore;
 
+    public float Score => _baseScore;
+
+    public void SetScore(float score) => _baseScore = score;
+
     public virtual void ChangeManagerScore()
     {
         _scored.Raise(_baseScore);

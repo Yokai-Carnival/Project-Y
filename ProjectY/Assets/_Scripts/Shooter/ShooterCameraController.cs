@@ -10,23 +10,6 @@ public class ShooterCameraController : MonoBehaviour
 
     [SerializeField] private Camera _cam;
 
-    private void Start()
-    {
-        HideCursor();
-    }
-
-    public void HideCursor()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void ShowCursor()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
     private void LateUpdate()
     {
         UpdateMouseLook();
@@ -43,5 +26,11 @@ public class ShooterCameraController : MonoBehaviour
 
         _cam.transform.localEulerAngles = Vector3.right * _cameraRotationX;
         transform.localEulerAngles = _playerRotationY * -1 * Vector3.up;
+    }
+
+    //Event Listener
+    public void Disable(bool state)
+    {
+        enabled = state;
     }
 }
