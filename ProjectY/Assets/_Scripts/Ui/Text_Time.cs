@@ -14,7 +14,7 @@ public class Text_Time : MonoBehaviour
     public void UpdateText(float time)
     {
         StringBuilder sb = new();
-        sb.Append("Time Left :").Append(Mathf.Round(time).ToString("00"));
+        sb.Append("Time Left : ").Append(Mathf.Round(time).ToString("00"));
         _score.text = sb.ToString();
     }
 }

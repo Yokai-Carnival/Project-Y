@@ -6,7 +6,6 @@ namespace Shooter
     public class Gun : MonoBehaviour
     {
         [SerializeField] private float _range = 20;
-        [SerializeField] LayerMask _targetLayer;
         private Vector3 _mousePosition;
         [SerializeField]private Camera _cam;
 
@@ -26,11 +25,11 @@ namespace Shooter
         private void Ray()
         {
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, _range, _targetLayer))
+            if (Physics.Raycast(ray, out RaycastHit hit, _range))
             {
                 if (hit.transform.TryGetComponent(out TargetScore targetable))
                 {
-                    targetable.ChangeManagerScore();
+                    targetable.ChangeManagerScore(hit.point);
                 }
                 _mousePosition = hit.point;
             }

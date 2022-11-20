@@ -8,6 +8,7 @@ namespace ProjectY
         protected float _elapsedTime;
         [SerializeField] protected bool _canTick = true;
 
+        public bool CanTick => _canTick;
         public float ElapsedTime { get => _elapsedTime; set => _elapsedTime = value; }
 
         public System.Action TimeEvent { get; set; }
@@ -28,6 +29,11 @@ namespace ProjectY
                 TimeEvent?.Invoke();
             }
         }
+
+        public void ChangeTime(float time) => Time += time;
+
+        public void SetTime(float time) => Time = time;
+
         /// <summary>
         /// Stops ticking
         /// </summary>
