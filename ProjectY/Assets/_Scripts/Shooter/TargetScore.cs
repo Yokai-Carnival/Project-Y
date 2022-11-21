@@ -81,19 +81,19 @@ namespace Shooter
             return _rings[i].localScale.x * TargetSize / 2;
         }
 
-        private void OnDrawGizmos()
-        {
-            if (_targetCenter == null)
-                return;
-            DrawTargetRadius(RingRadius(2), Color.blue);
-            DrawTargetRadius(RingRadius(1), Color.red);
-            DrawTargetRadius(RingRadius(0), Color.yellow);
-        }
+        //private void OnDrawGizmos()
+        //{
+        //    if (_targetCenter == null)
+        //        return;
+        //    DrawTargetRadius(RingRadius(2), Color.blue);
+        //    DrawTargetRadius(RingRadius(1), Color.red);
+        //    DrawTargetRadius(RingRadius(0), Color.yellow);
+        //}
 
-        private void DrawTargetRadius(float radius, Color color)
-        {
-            Gizmos.color = color;
-            Gizmos.DrawSphere(_targetCenter.position, radius);
-        }
+        //private void DrawTargetRadius(float radius, Color color)
+        //{
+        //    Gizmos.color = color;
+        //    Gizmos.DrawSphere(_targetCenter.position, radius);
+        //}
     }
 }

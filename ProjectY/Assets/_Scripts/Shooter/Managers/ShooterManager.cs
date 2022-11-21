@@ -17,10 +17,10 @@ namespace Shooter
 
         [Header("Timers")]
         [SerializeField] private Timer _endGameTimer;
+        [SerializeField] private VoidEvent _gameEnded;
         [SerializeField] private FloatVariable _currentTime;
         [SerializeField] private Timer _flipTargets;
         [SerializeField] private Timer _flipTargetsBack;
-        [SerializeField] private VoidEvent _gameEnded;
 
         private void OnEnable()
         {
@@ -66,7 +66,7 @@ namespace Shooter
             timer.enabled = false;
         }
 
-        private void GetAllTargetsInScene() => _targetPool = FindObjectsOfType<TargetFlipper>().ToList();
+        private void GetAllTargetsInScene() => _targetPool = GetComponentsInChildren<TargetFlipper>().ToList();
 
         [ContextMenu("Flip")]
         public void FlipTargets()
@@ -74,18 +74,16 @@ namespace Shooter
             _flipTargets.StopAndReset();
             _flipTargetsBack.Continue();
 
-            int poolSize = _targetPool.Count;
             int amountToFlip = Random.Range(_batchRange.x, _batchRange.y);
 
             for (int i = 0; i < amountToFlip; i++)
             {
-                int index = Random.Range(0, poolSize);
+                int index = Random.Range(0, _targetPool.Count);
 
                 TargetFlipper iFlipper = _targetPool[index];
                 RemoveFromPool(iFlipper);
 
                 iFlipper.Flip();
-                poolSize--;
             }
         }
 
@@ -110,13 +108,13 @@ namespace Shooter
                 FlipTargetBackLoop(_currentGoodTargetsFlipped);
         }
 
-        private void FlipTargetBackLoop(List<TargetFlipper> targetFlippers)
+        private void FlipTargetBackLoop(List<TargetFlipper> targetFlippers, float speedMultiplier = 1)
         {
             for (int i = targetFlippers.Count - 1; i >= 0; i--)
             {
                 TargetFlipper iFlipper = targetFlippers[i];
                 AddBackToPool(targetFlippers, iFlipper);
-                iFlipper.FlipBack();
+                iFlipper.FlipBack(speedMultiplier);
             }
         }
 
@@ -145,7 +143,7 @@ namespace Shooter
                 _flipTargetsBack.StopAndReset();
 
                 if (_currentGoodTargetsFlipped.Count > 0)
-                    FlipTargetBackLoop(_currentGoodTargetsFlipped);
+                    FlipTargetBackLoop(_currentGoodTargetsFlipped, 2);
 
                 // Can Add A special score here 
                 // Like if the player shot all targets before the timer to flip back
