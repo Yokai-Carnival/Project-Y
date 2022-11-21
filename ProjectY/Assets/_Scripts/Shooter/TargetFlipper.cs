@@ -17,7 +17,7 @@ namespace Shooter
         public TargetType Type => _badOrGood;
 
         //Bad hardCoded but yeah
-        private readonly Quaternion _laying = Quaternion.Euler(90, 0, 0);
+        private readonly Quaternion _laying = Quaternion.Euler(100, 0, 0);
         private readonly Quaternion _standing = Quaternion.Euler(0, 0, 0);
 
         private readonly WaitForEndOfFrame _wait = new();
@@ -58,13 +58,9 @@ namespace Shooter
         {
             _badOrGood = type;
             if (type == TargetType.Good)
-            {
                 _targetScore.SetScore(-_targetScore.Score);
-            }
             else
-            {
                 _targetScore.SetScore(Mathf.Abs(_targetScore.Score));
-            }
         }
     }
 }

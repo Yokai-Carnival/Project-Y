@@ -6,23 +6,23 @@ namespace Shooter
     public class Gun : MonoBehaviour
     {
         [SerializeField] private float _range = 20;
-        private Vector3 _mousePosition;
-        [SerializeField]private Camera _cam;
+        private Vector3 _hitPoint;
+        [SerializeField] private Camera _cam;
 
         private void Update()
         {
-            Shoot();
+            CheckInput();
         }
 
-        private void Shoot()
+        private void CheckInput()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Ray();
+                Shoot();
             }
         }
 
-        private void Ray()
+        private void Shoot()
         {
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, _range))
@@ -31,14 +31,14 @@ namespace Shooter
                 {
                     targetable.ChangeManagerScore(hit.point);
                 }
-                _mousePosition = hit.point;
+                _hitPoint = hit.point;
             }
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(_cam.transform.position, _mousePosition);
+            Gizmos.DrawLine(_cam.transform.position, _hitPoint);
         }
     }
 }

@@ -20,7 +20,7 @@ public class PopUpText_FeedBackShot : MonoBehaviour
     private IEnumerator PopUpCo()
     {
         float eTime = 0;
-        _text.color= Color.white;
+        _text.color = Color.white;
         while(eTime < _timeToFade)
         {
             _text.color = _fadeGradient.Evaluate(eTime / _timeToFade);
