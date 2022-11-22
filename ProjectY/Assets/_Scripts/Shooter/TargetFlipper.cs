@@ -26,6 +26,17 @@ namespace Shooter
 
         private void OnDisable() => _targetScore.Shot -= ReturnToPool;
 
+        //Might need to change this to a coroutine or event, Because this needs to happen after the randomizeTargetPosition 
+        //Or have This have a randomize and call their methods or the other way Around
+        private IEnumerator Start()
+        {
+            yield return _wait;
+            Laying();
+        }
+
+        public void Standing() => transform.rotation = _standing;
+        public void Laying() => transform.rotation = _laying;
+
         public void Flip()
         {
             StopAllCoroutines();
