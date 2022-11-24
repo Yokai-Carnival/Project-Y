@@ -7,6 +7,7 @@ public class RandomizeTargetPosition : MonoBehaviour
     [SerializeField] private Transform _body;
     [SerializeField] private Transform _target;
     [SerializeField] private Transform _outerRing;
+    [SerializeField] private bool _showGizmos;
 
     private void Start() => Randomize();
 
@@ -34,12 +35,15 @@ public class RandomizeTargetPosition : MonoBehaviour
         bounds = b / 2;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.black;
-    //    Bounds(out Vector3 bounds);
-    //    Vector3 pos = _body.position;
-    //    pos.z = _target.position.z;
-    //    Gizmos.DrawCube(pos, bounds * 2);
-    //}
+    private void OnDrawGizmos()
+    {
+        if (!_showGizmos)
+            return;
+        Gizmos.color = Color.black;
+        Bounds(out Vector3 bounds);
+        bounds = Quaternion.Euler(transform.eulerAngles) * bounds;
+        Vector3 pos = _body.position;
+        pos.z = _target.position.z;
+        Gizmos.DrawCube(pos, bounds * 2);
+    }
 }
