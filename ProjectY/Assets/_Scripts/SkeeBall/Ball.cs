@@ -16,8 +16,8 @@ namespace SkeeBall
         [SerializeField] private Rigidbody _rb;
         [Tooltip("The event triggers when the rigidibody speed is under this value")]
         [SerializeField] private float _velocityTolerance = 1f;
+        private bool CheckIfMoving => _rb.velocity.magnitude > _velocityTolerance;
         [SerializeField] private Timer _timerToDisappear;
-        [SerializeField] private VoidEvent _stopMovingEvent;
 
         private void OnEnable()
         {
@@ -33,7 +33,7 @@ namespace SkeeBall
         {
             if (!_thrown || _scored)
                 return;
-            if(CheckIfMoving())
+            if(CheckIfMoving)
             {
                 _timerToDisappear.Stop();
             }
@@ -49,13 +49,14 @@ namespace SkeeBall
             gameObject.SetActive(true);
             enabled = true;
             _scored = false;
+            _thrown = false;
         }
 
         public void Disappear()
         {
-            _stopMovingEvent.Raise();
+            _thrownEvent.Raise(this);
             gameObject.SetActive(false);
-            _timerToDisappear.Reset_();
+            _timerToDisappear.StopAndReset();
             _rb.velocity = Vector3.zero;
         }
 
@@ -63,12 +64,7 @@ namespace SkeeBall
         {
             _scored = true;
             _timerToDisappear.Continue();
-        }
-
-        private bool CheckIfMoving()
-        {
-            return _rb.velocity.magnitude > _velocityTolerance;
-        }
+        }  
 
         public void Thrown(Vector3 direction, float force)
         {
@@ -78,7 +74,6 @@ namespace SkeeBall
             _rb.velocity = direction * force;
             _rb.useGravity = true;
             _thrown = true;
-            _thrownEvent.Raise(this);
         }
 
         public Ball PickUp(Transform point, Transform parent)

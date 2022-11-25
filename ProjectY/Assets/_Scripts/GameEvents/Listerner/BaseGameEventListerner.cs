@@ -28,10 +28,7 @@ namespace ScriptableObjectEvents
 
         public void OnEventRaised(T item)
         {
-            if(_unityEventResponse != null)
-            {
-                _unityEventResponse.Invoke(item);
-            }
+            _unityEventResponse?.Invoke(item);
         }
     }
 }

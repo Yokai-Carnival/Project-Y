@@ -4,8 +4,5 @@ using UnityEngine;
 
 namespace ScriptableObjectEvents
 {
-    public class VoidListener : BaseGameEventListerner<Void, VoidEvent, UnityVoidEvent>
-    {
-
-    }
+    public class VoidListener : BaseGameEventListerner<Void, VoidEvent, UnityVoidEvent> { }
 }

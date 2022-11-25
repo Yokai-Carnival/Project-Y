@@ -1,8 +1,8 @@
 ﻿using UnityEngine.Events;
-using Shooter;
+using ProjectY;
 
 namespace ScriptableObjectEvents
 {
     [System.Serializable]
-    public class UnityTargetFlipperEvent : UnityEvent<TargetFlipper> { }
+    public class UnityTargetEvent : UnityEvent<Target> { }
 }

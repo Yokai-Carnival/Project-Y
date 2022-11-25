@@ -59,7 +59,6 @@ namespace SkeeBall
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(_cam.transform.position, _hitPoint.normalized * _grabRange);
-            Gizmos.DrawLine(_cam.transform.position, transform.forward * 20);
         }
     }
 }  

@@ -7,12 +7,16 @@ namespace SkeeBall
         [Header("FeedBack")]
         [SerializeField] private ScriptableObjectEvents.StringEvent _feedBackMessage;
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual string FeedBackMessage { get => $"{_baseScore}"; }
+
+        protected virtual void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Ball ball))
             {
+                if (ball.Scored)
+                    return;
                 ChangeManagerScore();
-                _feedBackMessage.Raise($"{_baseScore}");
+                _feedBackMessage.Raise(FeedBackMessage);
                 ball.EnteredAHole();
             }
         }

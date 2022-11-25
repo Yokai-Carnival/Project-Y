@@ -1,20 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using ScriptableObjectEvents;
+using ProjectY;
 
 namespace Shooter
 {
-    public class TargetFlipper : MonoBehaviour
+    public class TargetFlipper : Target
     {
-        [SerializeField] private float _rotationSpeed = 100;
-
-        [SerializeField] private TargetFlipperEvent _event;
-
         [Header("Score")]
         [SerializeField] private TargetScore _targetScore;
-        [SerializeField] private float _shotRotationMultiplier = 5;
-        [SerializeField] private TargetType _badOrGood = TargetType.Bad;
-        public TargetType Type => _badOrGood;
 
         //Bad hardCoded but yeah
         private readonly Quaternion _laying = Quaternion.Euler(100, 0, 0);
@@ -26,24 +19,16 @@ namespace Shooter
 
         private void OnDisable() => _targetScore.Shot -= ReturnToPool;
 
-        //Might need to change this to a coroutine or event, Because this needs to happen after the randomizeTargetPosition 
-        //Or have This have a randomize and call their methods or the other way Around
-        private IEnumerator Start()
-        {
-            yield return _wait;
-            Laying();
-        }
+        public void Stand() => transform.rotation = _standing;
+        public void Lay() => transform.rotation = _laying;
 
-        public void Standing() => transform.rotation = _standing;
-        public void Laying() => transform.rotation = _laying;
-
-        public void Flip()
+        public override void Flip()
         {
             StopAllCoroutines();
             StartCoroutine(FlipCoroutine(_standing, -1));
         }
 
-        public void FlipBack(float speedMultiplier = 1)
+        public override void FlipBack(float speedMultiplier = 1)
         {
             StopAllCoroutines();
             StartCoroutine(FlipCoroutine(_laying, speedMultiplier));
@@ -53,16 +38,10 @@ namespace Shooter
         {
             while (!MathHelper.CompareRotations(transform.rotation, rotation, 10))
             {
-                transform.Rotate(_rotationSpeed * positive * speedMultiplier * Time.deltaTime * Vector3.right);
+                transform.Rotate(_speed * positive * speedMultiplier * Time.deltaTime * Vector3.right);
                 yield return _wait;
             }
             transform.rotation = rotation;
-        }
-
-        public void ReturnToPool()
-        {
-            FlipBack(_shotRotationMultiplier);
-            _event.Raise(this);
         }
 
         public void SetType(TargetType type)
