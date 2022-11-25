@@ -10,7 +10,6 @@ namespace Shooter
         private float _scoreToRaise;
         [SerializeField] private Transform _targetCenter;
         [Tooltip("From center to outer")]
-        //[SerializeField] private float[] _radiusSizes = new float[3] { 2.5f, 1.5f, 1f };
         [SerializeField] private Transform[] _rings = new Transform[3];
         [SerializeField] private FloatVariable _laneMultiplier;
         private float TargetSize => _targetCenter.localScale.x;

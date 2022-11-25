@@ -13,6 +13,7 @@ namespace SkeeBall
         [SerializeField] private float _force;
         [SerializeField] private Camera _cam;
         private Vector3 _hitPoint;
+        Ray ray;
 
         private void Update()
         {
@@ -38,16 +39,17 @@ namespace SkeeBall
         private void Thrown()
         {
             _ball.Thrown(_cam.transform.forward, _force);
+            _ball = null;
         }
 
         private void PickUpBall()
         {
-            Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+            ray = _cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, _grabRange))
             {
                 if (hit.transform.TryGetComponent(out Ball ball))
                 {
-                    _ball = ball.PickUp();
+                    _ball = ball.PickUp(transform, _cam.transform);
                 }
                 _hitPoint = hit.point;
             }
@@ -56,7 +58,7 @@ namespace SkeeBall
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(_cam.transform.position, _hitPoint);
+            Gizmos.DrawLine(_cam.transform.position, _hitPoint.normalized * _grabRange);
         }
     }
 }  
