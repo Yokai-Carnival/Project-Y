@@ -3,11 +3,10 @@ using UnityEngine;
 
 namespace Shooter
 {
-    public class Gun : MonoBehaviour
+    public class Gun : BaseGun
     {
-        [SerializeField] private float _range = 20;
-        private Vector3 _hitPoint;
         [SerializeField] private Camera _cam;
+        protected override Ray Ray => _cam.ScreenPointToRay(Input.mousePosition);
 
         private void Update()
         {
@@ -20,25 +19,6 @@ namespace Shooter
             {
                 Shoot();
             }
-        }
-
-        private void Shoot()
-        {
-            Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, _range))
-            {
-                if (hit.transform.TryGetComponent(out TargetScore targetable))
-                {
-                    targetable.ChangeManagerScore(hit.point);
-                }
-                _hitPoint = hit.point;
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(_cam.transform.position, _hitPoint);
         }
     }
 }
