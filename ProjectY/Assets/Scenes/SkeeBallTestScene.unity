@@ -240,9 +240,10 @@ MonoBehaviour:
   _startingBalls: 1
   _ballSpawnPoint: {fileID: 519554345}
   _delayBetweenSpawns: 0.5
-  _howMuchScoreToGainBall: 10
+  _howMuchScoreToGainBall: 100
   _ballsToGain: 3
   _ballsToGainFromSpecialScore: 1
+  _endGame: {fileID: 11400000, guid: e71b24dd0e0195848a51f0b22f95bbb1, type: 2}
 --- !u!1 &104004390
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,8 +604,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263055269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.338, y: 0.64, z: 0.98}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.159, y: 0.64, z: 2.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -614,7 +615,7 @@ Transform:
   - {fileID: 519554345}
   m_Father: {fileID: 0}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &265570160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1683,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896333617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.82, z: 0}
+  m_LocalPosition: {x: 0, y: 1.82, z: 0.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1703,8 +1704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseSensitivity: 4
-  _xRotationRange: {x: -60, y: 60}
-  _yRotationRange: {x: -60, y: 60}
+  _xRotationRange: {x: -75, y: 75}
+  _yRotationRange: {x: -90, y: 90}
   _cam: {fileID: 330585545}
 --- !u!114 &896333621
 MonoBehaviour:
@@ -2932,6 +2933,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseScreen: {fileID: 1779992581}
   _gamePaused: {fileID: 11400000, guid: 42589ab692c3f5349b298b1776eaf567, type: 2}
+  _pause:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pause
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 70ac0e6e-fa0e-43f5-8653-c624f8cda875
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5753542182012335452, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  _restart:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Restart
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: eed2e483-7151-486d-8b73-60e8d16e9662
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1019157420602354535, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!114 &1300354489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3087,7 +3114,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33586
+  m_Name: pb_Mesh29662
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3423,7 +3450,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375777656}
-  - component: {fileID: 1375777658}
   - component: {fileID: 1375777657}
   - component: {fileID: 1375777659}
   - component: {fileID: 1375777661}
@@ -3443,7 +3469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375777655}
   m_LocalRotation: {x: 0.3065261, y: -0, z: -0, w: 0.9518623}
-  m_LocalPosition: {x: 0.364, y: 1.517, z: 1.17}
+  m_LocalPosition: {x: -0.0037500006, y: 2.132119, z: 6.872568}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3462,9 +3488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aac04454482c7049a666bbe9e7204e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scored: {fileID: 11400000, guid: f4855d017d56c8e4186db1a519e23a27, type: 2}
-  _baseScore: 0
-  _feedBackMessage: {fileID: 11400000, guid: c12881231e768db4a8c3d1fbcfe1c095, type: 2}
   _scores:
   - {fileID: 1822313142}
   - {fileID: 546896429}
@@ -3473,19 +3496,8 @@ MonoBehaviour:
   - {fileID: 1648428068}
   - {fileID: 2129409020}
   _specialScore: {fileID: 11400000, guid: c7fe035be9876e344b9c7891d6e853c1, type: 2}
---- !u!65 &1375777658
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375777655}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  _feedBackScore: You got 1 Ball back
+  _feedBackEvent: {fileID: 11400000, guid: c12881231e768db4a8c3d1fbcfe1c095, type: 2}
 --- !u!114 &1375777659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32563,7 +32575,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822313139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0030000005, y: 0.375, z: 0.25}
+  m_LocalPosition: {x: -0.0030000005, y: 0.382, z: 0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

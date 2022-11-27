@@ -8,7 +8,7 @@ namespace SkeeBall
     {
         [Header("Thorwn")]
         [SerializeField] private BallEvent _thrownEvent;
-        private bool _thrown;
+        protected bool _thrown;
         private bool _scored;
         public bool Scored => _scored;
 
@@ -17,21 +17,21 @@ namespace SkeeBall
         [Tooltip("The event triggers when the rigidibody speed is under this value")]
         [SerializeField] private float _velocityTolerance = 1f;
         private bool CheckIfMoving => _rb.velocity.magnitude > _velocityTolerance;
-        [SerializeField] private Timer _timerToDisappear;
+        [SerializeField] protected Timer _timerToDisappear;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             _timerToDisappear.TimeEvent += Disappear;
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             _timerToDisappear.TimeEvent -= Disappear;
         }
 
         private void LateUpdate()
         {
-            if (!_thrown || _scored)
+            if (!_thrown && !_scored)
                 return;
             if(CheckIfMoving)
             {

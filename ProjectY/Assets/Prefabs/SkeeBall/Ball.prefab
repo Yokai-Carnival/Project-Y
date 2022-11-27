@@ -76,7 +76,7 @@ Transform:
   m_GameObject: {fileID: 9037500802654802406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7144281103715977199}
@@ -99,7 +99,6 @@ MonoBehaviour:
   _rb: {fileID: 9037500802654802460}
   _velocityTolerance: 1
   _timerToDisappear: {fileID: 5022970512732758333}
-  _stopMovingEvent: {fileID: 11400000, guid: e2a9df56f033755458c52a90b304d27c, type: 2}
 --- !u!33 &9037500802654802403
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -178,4 +177,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
