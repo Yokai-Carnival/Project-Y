@@ -10,9 +10,10 @@ public class PopUpText_FeedBackShot : MonoBehaviour
     private readonly WaitForEndOfFrame _wait = new();
 
     //Event listener to Target feedBacktext
-    public void PopUp(string text)
-    { 
-        _text.text = text;
+    public void PopUp(string message)
+    {
+        print(message);
+        _text.text = message;
         StopAllCoroutines();
         StartCoroutine(PopUpCo());
     }

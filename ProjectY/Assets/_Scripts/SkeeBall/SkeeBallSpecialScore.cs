@@ -3,26 +3,34 @@ using ScriptableObjectEvents;
 
 namespace SkeeBall
 {
-    public class SkeeBallSpecialScore : SkeeBallScore
+    public class SkeeBallSpecialScore : MonoBehaviour
     {
-        [Header("Special Score")]
         [SerializeField] private SkeeBallScore[] _scores;
+        private SkeeBallScore _currentScore;
         [SerializeField] private VoidEvent _specialScore;
-
-        protected override string FeedBackMessage => "You get 1 Ball Back!";
-
-        protected override void OnTriggerEnter(Collider other)
+        [Space]
+        [SerializeField] private string _feedBackScore = "You got 1 Ball back";
+        [SerializeField] private StringEvent _feedBackEvent;
+        private void OnEnable()
         {
-            base.OnTriggerEnter(other);
-            _specialScore.Raise();
+            ChangePos();
         }
 
-        //Event Listener
+        private void OnDisable()
+        {
+            _currentScore.Scored -= ChangePos;
+        }
+
+        //Event Listener. Whenever Player scores
         public void ChangePos()
         {
+            _specialScore.Raise();
+            _feedBackEvent.Raise(_feedBackScore);
             int i = Random.Range(0,_scores.Length);
-            SkeeBallScore iScore = _scores[i];
-            transform.SetPositionAndRotation(iScore.transform.position, iScore.transform.rotation);
+            _currentScore.Scored -= ChangePos;
+            _currentScore = _scores[i];
+            transform.SetPositionAndRotation(_currentScore.transform.position, _currentScore.transform.rotation);
+            _currentScore.Scored += ChangePos;;
         }
     }
 }  

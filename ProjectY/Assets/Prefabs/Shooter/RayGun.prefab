@@ -242,6 +242,8 @@ GameObject:
   - component: {fileID: 6708780184181679945}
   - component: {fileID: 6708780184181679947}
   - component: {fileID: 6708780184181679946}
+  - component: {fileID: 2129935880}
+  - component: {fileID: 2129935881}
   m_Layer: 7
   m_Name: RayGun
   m_TagString: Untagged
@@ -297,7 +299,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &6708780184181679945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,11 +387,11 @@ MonoBehaviour:
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
   m_SmoothPosition: 1
-  m_SmoothPositionAmount: 5
+  m_SmoothPositionAmount: 10.1
   m_TightenPosition: 0.3
   m_TrackRotation: 1
   m_SmoothRotation: 1
-  m_SmoothRotationAmount: 5
+  m_SmoothRotationAmount: 9.8
   m_TightenRotation: 0.3
   m_ThrowOnDetach: 1
   m_ThrowSmoothingDuration: 0.25
@@ -431,6 +433,10 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
+  _lineRenderer: {fileID: 6708780184181679946}
+  _lineRayMasks:
+    serializedVersion: 2
+    m_Bits: 243
 --- !u!120 &6708780184181679946
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -530,6 +536,48 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!114 &2129935880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708780184181679949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d11174be61dd24f88864281a9e923d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hapticOnActivated:
+    _intensity: 0.646
+    _duration: 1
+  _hapticHoverEntered:
+    _intensity: 0.646
+    _duration: 1
+  _hapticHoverExited:
+    _intensity: 0.646
+    _duration: 1
+  _hapticSelectEntered:
+    _intensity: 0.646
+    _duration: 1
+  _hapticSelectExit:
+    _intensity: 0.646
+    _duration: 1
+  _interactable: {fileID: 6708780184181679945}
+--- !u!114 &2129935881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708780184181679949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7f846efe4e4b94ab8c41601f5e146c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startGame: {fileID: 11400000, guid: cd557e1b5bac4b9409d26e38ed922272, type: 2}
+  _interactable: {fileID: 6708780184181679945}
 --- !u!1 &6708780184322359095
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,13 +19,10 @@ namespace Shooter
                     targetable.ChangeManagerScore(hit.point);
                 }
                 _hitPoint = hit.point;
-                print("Hell yeah");
             }
-            print(Ray.direction);
-            print(hit.collider);
         }
 
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, _hitPoint);

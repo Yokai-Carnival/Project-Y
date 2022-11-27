@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjectEvents;
 
 namespace SkeeBall
 {
@@ -11,7 +12,6 @@ namespace SkeeBall
         private readonly Queue<Ball> _thrownBalls = new();
         [SerializeField] private int _startingBalls = 9;
         private int _currentBallCount;
-
         [SerializeField] private Transform _ballSpawnPoint;
         [SerializeField] private float _delayBetweenSpawns = 0.25f;
         private WaitForSeconds _delayWait;
@@ -22,8 +22,11 @@ namespace SkeeBall
         [SerializeField] private int _ballsToGain = 3;
         private int _timesThatGainBall = 1;
 
-        [Header("SpecialScore")]
+        [Header("Special Score")]
         [SerializeField] private int _ballsToGainFromSpecialScore = 1;
+
+        [Header("End Game")]
+        [SerializeField] private VoidEvent _endGame;
 
         private void Start()
         {
@@ -51,7 +54,7 @@ namespace SkeeBall
         public void GiveBalls(float scoreAmount)
         {
             int i = _howMuchScoreToGainBall * _timesThatGainBall;
-            if(scoreAmount / i == 1)
+            if(scoreAmount / i >= 1)
             {
                 _timesThatGainBall++;
                 StartCoroutine(GiveBallsCo(_ballsToGain));
@@ -86,6 +89,7 @@ namespace SkeeBall
             if(_currentBallCount == 0)
             {
                 print("No more balls");
+                _endGame.Raise();
             }
         }
     }

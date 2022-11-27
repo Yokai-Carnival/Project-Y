@@ -69,10 +69,10 @@ namespace Shooter
         private void GetAllTargetsInScene()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorUtility.SetDirty(gameObject);
-            UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject);
+            UnityEditor.EditorUtility.SetDirty(this);
+            UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(this);
 #endif
-            _targetPool = GetComponentsInChildren<Target>().ToList();
+            _targetPool = FindObjectsOfType<Target>().ToList();
         }
 
         [ContextMenu("Flip")]
@@ -144,7 +144,7 @@ namespace Shooter
         public void AddBackToPoolPublic(Target flipper)
         {
             AddBackToPool(flipper);
-            if(_currentBadTargetsFlipped.Count == 0)
+            if (_currentBadTargetsFlipped.Count == 0)
             {
                 _flipTargets.Continue();
                 _flipTargetsBack.StopAndReset();
