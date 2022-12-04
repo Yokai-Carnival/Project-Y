@@ -9,7 +9,6 @@ namespace Shooter
         [SerializeField] private LayerMask _lineRayMasks;
         private Vector3 _maxLineLength;
 
-        private readonly Ray _ray = new();
         protected override Ray Ray => _ray.SetOriginAndDirection(transform.position, transform.forward);
 
         private void Start()

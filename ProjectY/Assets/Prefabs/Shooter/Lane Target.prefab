@@ -97,12 +97,25 @@ MonoBehaviour:
     _changeAmount: -1
     _amountToAddEvent: {fileID: 11400000, guid: f05ef207ccd4ee3428a8e953731ccf30,
       type: 2}
-  _feedBackEvent: {fileID: 11400000, guid: c12881231e768db4a8c3d1fbcfe1c095, type: 2}
+  _feedBackMessageEvent: {fileID: 11400000, guid: c12881231e768db4a8c3d1fbcfe1c095,
+    type: 2}
   _feedBackMessage:
   - Bulls eye!
   - Okay!
   - Bad!
   - Terrible!
+  _feedBackParticleEvent: {fileID: 11400000, guid: f6990249b409b92448cf8756f8bad8b7,
+    type: 2}
+  _feedBackParticleData:
+  - _colour: {fileID: 2100000, guid: 8d1b7bd2eab1be64fa93450d1286ffc1, type: 2}
+    _amount: 25
+  - _colour: {fileID: 2100000, guid: c90d23315f9d3084a81609d60614983a, type: 2}
+    _amount: 20
+  - _colour: {fileID: 2100000, guid: 84be4b009a0e25f42a7ce270a166021c, type: 2}
+    _amount: 15
+  - _colour: {fileID: 2100000, guid: 9b4c95a3aa42dd443b078d2ee2a80f40, type: 2}
+    _amount: 10
+  _scorePopUp: {fileID: 11400000, guid: 61a65e8fb2885e246b21aa043a58722a, type: 2}
 --- !u!33 &8396645149217750137
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -506,7 +519,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7273748829927224178}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c921e106ca616524fb00ca145b9e883a, type: 3}
   m_Name: 
