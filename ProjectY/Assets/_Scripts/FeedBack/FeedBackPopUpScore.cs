@@ -18,13 +18,15 @@ public class FeedBackPopUpScore : MonoBehaviour
     private float _startTextSize;
     [SerializeField] private float _endTextSize;
     private readonly WaitForEndOfFrame _wait = new();
+    private Camera _cam;
 
     private void Start()
     {
+        _cam = Camera.main;
         _startTextSize = _popUpText.fontSize;
     }
 
-    private IEnumerator Move()
+    private IEnumerator Animation()
     {
         float e = 0;
         Vector3 animationStartPos = transform.position + _offset;
@@ -52,8 +54,10 @@ public class FeedBackPopUpScore : MonoBehaviour
     {
         _popUpText.text = ScoreText(score);
         _popUpText.enabled = true;
+        Vector3 pos = transform.position - _cam.transform.position;
+        transform.rotation = Quaternion.LookRotation(pos);
         StopAllCoroutines();
-        StartCoroutine(Move());
+        StartCoroutine(Animation());
     }
 
     private string ScoreText(float score)
