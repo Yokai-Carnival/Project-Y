@@ -120,6 +120,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _endTextSize: 2.5
+  _scaleIndepentOfDistance:
+    _objectToScale: {fileID: 289087540616537152}
+    _cam: {fileID: 0}
+    _scaleFactor: 1
 --- !u!23 &289087540616537153
 MeshRenderer:
   m_ObjectHideFlags: 0
