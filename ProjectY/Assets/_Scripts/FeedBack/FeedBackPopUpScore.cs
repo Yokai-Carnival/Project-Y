@@ -41,6 +41,7 @@ namespace ProjectY
                 _popUpText.transform.position = Vector3.Lerp(animationStartPos, _animationEndPos + animationStartPos, t);
                 _popUpText.color = _animationColour.Evaluate(t);
                 _popUpText.fontSize = Mathf.Lerp(_startTextSize, _endTextSize, t);
+                _scaleIndepentOfDistance.UpdateScale();
                 yield return _wait;
             }
             _popUpText.enabled = false;

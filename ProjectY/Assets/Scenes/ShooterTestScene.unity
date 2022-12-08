@@ -478,7 +478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &296444778
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -807,7 +807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &452158586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1077,7 +1077,7 @@ PrefabInstance:
     - target: {fileID: 8477005882558875020, guid: 72f7e489df76597438244a2f2e11482e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8477005882558875021, guid: 72f7e489df76597438244a2f2e11482e,
         type: 3}
@@ -3246,6 +3246,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: FeedBackPopUpScore
       objectReference: {fileID: 0}
+    - target: {fileID: 289087540616537159, guid: 398fe0606e4f0f34c93f07c09154418b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289087540616537533, guid: 398fe0606e4f0f34c93f07c09154418b,
+        type: 3}
+      propertyPath: _animationColour.key1.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 289087540616537533, guid: 398fe0606e4f0f34c93f07c09154418b,
         type: 3}
       propertyPath: _scaleIndepentOfDistance._cam
@@ -3262,13 +3272,48 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2262567939545683261, guid: d36e43edead8418488df0a761490e82a,
         type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262567939545683261, guid: d36e43edead8418488df0a761490e82a,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262567939545683261, guid: d36e43edead8418488df0a761490e82a,
+        type: 3}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 1237898911}
+    - target: {fileID: 2262567939545683261, guid: d36e43edead8418488df0a761490e82a,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262567939545683261, guid: d36e43edead8418488df0a761490e82a,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262567939545683261, guid: d36e43edead8418488df0a761490e82a,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262567939545683261, guid: d36e43edead8418488df0a761490e82a,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 35273
+      objectReference: {fileID: 0}
     - target: {fileID: 2262567939990727506, guid: d36e43edead8418488df0a761490e82a,
         type: 3}
       propertyPath: m_Name
       value: FeedBackParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262567939990727506, guid: d36e43edead8418488df0a761490e82a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2262567939990727535, guid: d36e43edead8418488df0a761490e82a,
         type: 3}
@@ -3392,7 +3437,7 @@ PrefabInstance:
     - target: {fileID: 2772657929207759169, guid: 22e2ce2c004674e41985d2bcc4b4043f,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2772657929207759171, guid: 22e2ce2c004674e41985d2bcc4b4043f,
         type: 3}
@@ -3414,6 +3459,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3678218485347633652, guid: aaf8dda81fff4074d8e039d7b4444203,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3678218485347633652, guid: aaf8dda81fff4074d8e039d7b4444203,
         type: 3}
       propertyPath: _targetPool.Array.data[0]
@@ -3502,7 +3552,7 @@ PrefabInstance:
     - target: {fileID: 3678218485347633653, guid: aaf8dda81fff4074d8e039d7b4444203,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3678218485347633655, guid: aaf8dda81fff4074d8e039d7b4444203,
         type: 3}

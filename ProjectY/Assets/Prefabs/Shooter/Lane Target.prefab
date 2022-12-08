@@ -108,13 +108,13 @@ MonoBehaviour:
     type: 2}
   _feedBackParticleData:
   - _colour: {fileID: 2100000, guid: 8d1b7bd2eab1be64fa93450d1286ffc1, type: 2}
-    _amount: 25
+    _amount: 100
   - _colour: {fileID: 2100000, guid: c90d23315f9d3084a81609d60614983a, type: 2}
-    _amount: 20
+    _amount: 80
   - _colour: {fileID: 2100000, guid: 84be4b009a0e25f42a7ce270a166021c, type: 2}
-    _amount: 15
+    _amount: 60
   - _colour: {fileID: 2100000, guid: 9b4c95a3aa42dd443b078d2ee2a80f40, type: 2}
-    _amount: 10
+    _amount: 40
   _scorePopUp: {fileID: 11400000, guid: 61a65e8fb2885e246b21aa043a58722a, type: 2}
 --- !u!33 &8396645149217750137
 MeshFilter:
