@@ -875,7 +875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scored: {fileID: 11400000, guid: f4855d017d56c8e4186db1a519e23a27, type: 2}
   _baseScore: 0
-  _feedBackMessage: {fileID: 0}
+  _feedBackMessage: {fileID: 11400000, guid: c12881231e768db4a8c3d1fbcfe1c095, type: 2}
 --- !u!65 &413558303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3445,14 +3445,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scores:
   - {fileID: 1822313142}
-  - {fileID: 546896429}
-  - {fileID: 1305361891}
   - {fileID: 1284942300}
   - {fileID: 1648428068}
   - {fileID: 2129409020}
   _specialScore: {fileID: 11400000, guid: c7fe035be9876e344b9c7891d6e853c1, type: 2}
   _feedBackScore: You got 1 Ball back!
-  _feedBackMessage: {fileID: 11400000, guid: c12881231e768db4a8c3d1fbcfe1c095, type: 2}
+  _feedBackEvent: {fileID: 11400000, guid: c12881231e768db4a8c3d1fbcfe1c095, type: 2}
 --- !u!65 &1375777658
 BoxCollider:
   m_ObjectHideFlags: 0

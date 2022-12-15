@@ -9,7 +9,7 @@ namespace ProjectY
         [SerializeField] protected bool _canTick = true;
 
         public bool CanTick => _canTick;
-        public float ElapsedTime { get => _elapsedTime; set => _elapsedTime = value; }
+        public virtual float ElapsedTime { get => _elapsedTime; set => _elapsedTime = value; }
 
         public System.Action TimeEvent { get; set; }
 
@@ -22,12 +22,17 @@ namespace ProjectY
 
         protected virtual void Ticking()
         {
-            _elapsedTime += UnityEngine.Time.deltaTime;
+            TickTime();
             if (_elapsedTime >= Time)
             {
                 Reset_();
                 TimeEvent?.Invoke();
             }
+        }
+
+        protected virtual void TickTime()
+        {
+            _elapsedTime += UnityEngine.Time.deltaTime;
         }
 
         public void ChangeTime(float time) => Time += time;

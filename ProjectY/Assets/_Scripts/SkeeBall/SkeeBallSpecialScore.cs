@@ -13,6 +13,7 @@ namespace SkeeBall
         [SerializeField] private StringEvent _feedBackEvent;
         private void OnEnable()
         {
+            _currentScore = _scores[0];
             ChangePos();
         }
 

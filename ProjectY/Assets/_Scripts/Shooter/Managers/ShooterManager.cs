@@ -10,9 +10,9 @@ namespace Shooter
     {
         [Header("Targets")]
         [ContextMenuItem("Get all targets in scene", nameof(GetAllTargetsInScene))]
-        [SerializeField] private List<Target> _targetPool = new();
-        private readonly List<Target> _currentBadTargetsFlipped = new();
-        private readonly List<Target> _currentGoodTargetsFlipped = new();
+        [SerializeField] private List<Mover> _targetPool = new();
+        private readonly List<Mover> _currentBadTargetsFlipped = new();
+        private readonly List<Mover> _currentGoodTargetsFlipped = new();
         [SerializeField] private Vector2Int _batchRange = new(1,6);
 
         [Header("Timers")]
@@ -72,7 +72,7 @@ namespace Shooter
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(this);
 #endif
-            _targetPool = FindObjectsOfType<Target>().ToList();
+            _targetPool = FindObjectsOfType<Mover>().ToList();
         }
 
         [ContextMenu("Flip")]
@@ -87,14 +87,14 @@ namespace Shooter
             {
                 int index = Random.Range(0, _targetPool.Count);
 
-                Target iFlipper = _targetPool[index];
+                Mover iFlipper = _targetPool[index];
                 RemoveFromPool(iFlipper);
 
-                iFlipper.Flip();
+                iFlipper.Move();
             }
         }
 
-        private void RemoveFromPool(Target iFlipper)
+        private void RemoveFromPool(Mover iFlipper)
         {
             _targetPool.Remove(iFlipper);
             if (iFlipper.Type == TargetType.Bad)
@@ -115,23 +115,23 @@ namespace Shooter
                 FlipTargetBackLoop(_currentGoodTargetsFlipped);
         }
 
-        private void FlipTargetBackLoop(List<Target> targetFlippers, float speedMultiplier = 1)
+        private void FlipTargetBackLoop(List<Mover> targetFlippers, float speedMultiplier = 1)
         {
             for (int i = targetFlippers.Count - 1; i >= 0; i--)
             {
-                Target iFlipper = targetFlippers[i];
+                Mover iFlipper = targetFlippers[i];
                 AddBackToPool(targetFlippers, iFlipper);
                 iFlipper.FlipBack(speedMultiplier);
             }
         }
 
-        private void AddBackToPool(List<Target> targetFlippers,Target iFlipper)
+        private void AddBackToPool(List<Mover> targetFlippers,Mover iFlipper)
         {
             _targetPool.Add(iFlipper);
             targetFlippers.Remove(iFlipper);
         }
 
-        private void AddBackToPool(Target iFlipper)
+        private void AddBackToPool(Mover iFlipper)
         {
             _targetPool.Add(iFlipper);
             if (iFlipper.Type == TargetType.Bad)
@@ -141,7 +141,7 @@ namespace Shooter
         }
 
         //Event Listener
-        public void AddBackToPoolPublic(Target flipper)
+        public void AddBackToPoolPublic(Mover flipper)
         {
             AddBackToPool(flipper);
             if (_currentBadTargetsFlipped.Count == 0)

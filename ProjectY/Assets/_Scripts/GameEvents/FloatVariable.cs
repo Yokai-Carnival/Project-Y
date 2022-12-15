@@ -11,6 +11,7 @@ public class FloatVariable : ScriptableObject
     [SerializeField] private float _value;
 
     public float Value => _value;
+    public float SetValue_ { set => _value = value; }
 
     public void SetValue(float value) => _value = value;
 

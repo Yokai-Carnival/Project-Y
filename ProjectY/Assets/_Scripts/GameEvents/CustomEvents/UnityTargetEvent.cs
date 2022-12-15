@@ -4,5 +4,5 @@ using ProjectY;
 namespace ScriptableObjectEvents
 {
     [System.Serializable]
-    public class UnityTargetEvent : UnityEvent<Target> { }
+    public class UnityTargetEvent : UnityEvent<Mover> { }
 }

@@ -321,6 +321,11 @@ PrefabInstance:
       propertyPath: m_SmoothRotationAmount
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6708780184181679946, guid: 27100a883a27e3740addee1f420a51dc,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 37586
+      objectReference: {fileID: 0}
     - target: {fileID: 6708780184181679949, guid: 27100a883a27e3740addee1f420a51dc,
         type: 3}
       propertyPath: m_Name
@@ -3795,6 +3800,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FeedBackPopUpScore
       objectReference: {fileID: 0}
+    - target: {fileID: 289087540616537533, guid: 398fe0606e4f0f34c93f07c09154418b,
+        type: 3}
+      propertyPath: _scaleIndepentOfDistance._cam
+      value: 
+      objectReference: {fileID: 1170494450}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 398fe0606e4f0f34c93f07c09154418b, type: 3}
 --- !u!1 &1996544707
@@ -4030,6 +4040,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShooterManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678218485347633653, guid: aaf8dda81fff4074d8e039d7b4444203,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3678218485347633655, guid: aaf8dda81fff4074d8e039d7b4444203,
         type: 3}

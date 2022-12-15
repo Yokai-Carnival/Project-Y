@@ -3,7 +3,7 @@ using ScriptableObjectEvents;
 
 namespace ProjectY
 {
-    public abstract class Target : MonoBehaviour
+    public abstract class Mover : MonoBehaviour
     {
         [Header("Speed")]
         [SerializeField] protected float _speed;
@@ -16,7 +16,7 @@ namespace ProjectY
         [Header("Event")]
         [SerializeField] protected TargetEvent _event;
 
-        public abstract void Flip();
+        public abstract void Move();
 
         public abstract void FlipBack(float speedMultiplier = 1);
 
