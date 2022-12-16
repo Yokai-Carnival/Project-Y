@@ -7,7 +7,7 @@ namespace Shooter
         [SerializeField] protected float _range = 20;
         private Vector3 _hitPoint;
         [SerializeField] private LayerMask _targetLayer;
-
+        protected Ray _ray;
         protected abstract Ray Ray { get; }
 
         protected void Shoot()

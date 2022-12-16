@@ -2,5 +2,5 @@
 
 namespace ScriptableObjectEvents
 {
-    public class TargetListener : BaseGameEventListerner<Target, TargetEvent, UnityTargetEvent> { }
+    public class TargetListener : BaseGameEventListerner<Mover, TargetEvent, UnityTargetEvent> { }
 }

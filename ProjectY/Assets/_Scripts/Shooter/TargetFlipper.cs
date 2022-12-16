@@ -4,7 +4,7 @@ using ProjectY;
 
 namespace Shooter
 {
-    public class TargetFlipper : Target
+    public class TargetFlipper : Mover
     {
         [Header("Score")]
         [SerializeField] private TargetScore _targetScore;
@@ -22,13 +22,13 @@ namespace Shooter
         public void Stand() => transform.rotation = _standing;
         public void Lay() => transform.rotation = _laying;
 
-        public override void Flip()
+        public override void Move()
         {
             StopAllCoroutines();
             StartCoroutine(FlipCoroutine(_standing, -1));
         }
 
-        public override void FlipBack(float speedMultiplier = 1)
+        public override void MoveBack(float speedMultiplier = 1)
         {
             StopAllCoroutines();
             StartCoroutine(FlipCoroutine(_laying, speedMultiplier));

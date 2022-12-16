@@ -12,7 +12,6 @@ public class PopUpText_FeedBackShot : MonoBehaviour
     //Event listener to Target feedBacktext
     public void PopUp(string message)
     {
-        print(message);
         _text.text = message;
         StopAllCoroutines();
         StartCoroutine(PopUpCo());

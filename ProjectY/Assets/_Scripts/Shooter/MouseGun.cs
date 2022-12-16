@@ -6,12 +6,15 @@ namespace Shooter
     {
         private bool _shoot;
         [SerializeField] private Camera _cam;
-        protected override Ray Ray => _cam.ScreenPointToRay(Input.mousePosition);
+        protected override Ray Ray => _ray;
+
+        private void Start() => _ray.origin = _cam.transform.position;
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                _ray.direction = _cam.transform.forward;
                 _shoot = true;
             }
         }
