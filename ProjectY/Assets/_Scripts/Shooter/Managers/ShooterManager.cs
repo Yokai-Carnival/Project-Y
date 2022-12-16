@@ -121,7 +121,7 @@ namespace Shooter
             {
                 Mover iFlipper = targetFlippers[i];
                 AddBackToPool(targetFlippers, iFlipper);
-                iFlipper.FlipBack(speedMultiplier);
+                iFlipper.MoveBack(speedMultiplier);
             }
         }
 

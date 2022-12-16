@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WhackMoleScore : BaseScore
+namespace WhackAMole
 {
-    
-    private void OnTriggerEnter(Collider other)
+    public class WhackMoleScore : BaseScore
     {
-        ChangeManagerScore();
+
+        private void OnTriggerEnter(Collider other)
+        {
+            ChangeManagerScore();
+        }
     }
 }

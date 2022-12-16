@@ -177,10 +177,15 @@ MonoBehaviour:
   _backSpeedMultiplier: 1
   _badOrGood: 0
   _event: {fileID: 0}
+  _maxSpeed: 5
   upPosition: {x: 0, y: 0.2, z: 0}
   downPosition: {x: 0, y: 0, z: 0}
-  isInEndPosition: 0
+  shouldBeUp: 1
+  _time: {fileID: 11400000, guid: f30c0135398bed94da528f09081bee7b, type: 2}
+  _elapsedTime: {fileID: 11400000, guid: 4ad3770f40ccfd54aafa763299c80452, type: 2}
   body: {fileID: 0}
+  score: {fileID: 0}
+  target: {fileID: 0}
 --- !u!54 &2066953761
 Rigidbody:
   m_ObjectHideFlags: 0
